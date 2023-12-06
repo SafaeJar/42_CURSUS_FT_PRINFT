@@ -27,6 +27,7 @@ void	ft_putnbr_fd(int n, int fd);
 int	print_base(unsigned long n, int base, int uol);
  int print_address(void *ptr);
  int print_address_recursive(unsigned long address);
+ int	print_unsigned(unsigned int n);
 
 
 

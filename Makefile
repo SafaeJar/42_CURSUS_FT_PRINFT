@@ -14,6 +14,7 @@ NAME = printf.a
 
 SRC = ft_printf.c print_char.c print_number.c \
 		print_string.c srclibft.c print_address.c\
+		print_unsigned.c
 
 OBJ =$(SRC:.c=.o)
 
