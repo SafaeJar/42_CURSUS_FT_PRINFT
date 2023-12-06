@@ -9,35 +9,33 @@
 #    Updated: 2023/11/30 16:54:56 by sjarfi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-NAME = libftprintf.a
-LIBFTNAME = Libft.a
-CC = cc
-CFLAGS = -Wall -Werror -Wextra
-LIBFTDIR = ./Libft
 
-SRCS = 	ft_printf.c \
-		print_char.c \
+NAME = printf.a
 
-OBJS = $(SRCS:.c=.o)
+SRC = ft_printf.c print_char.c print_number.c \
+		print_string.c srclibft.c print_address.c\
 
-all: $(NAME)
+OBJ =$(SRC:.c=.o)
 
-makelibft:
-	@make -C $(LIBFTDIR)
-	@cp $(LIBFTDIR)/$(LIBFTNAME) .
-	@mv $(LIBFTNAME) $(NAME)
+AR = ar rcs
 
-$(NAME): makelibft $(OBJS)
-	@ar -r $(NAME) $(OBJS)
+CC = gcc
+
+CFLAGS = -Wall -Wextra -Werror
+
+all : $(NAME)
+
+$(NAME) : $(OBJ)
+	$(AR) $(NAME) $(OBJ)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+fclean : clean
+	rm -f $(NAME)
 
 clean:
-	@rm -f $(OBJS)
-	@cd $(LIBFTDIR) && make clean
-	
-fclean: clean
-	@rm -f $(NAME)
-	@cd $(LIBFTDIR) && make fclean
-	
-re: fclean all
+	rm -f $(OBJ)
 
+re : fclean all
 
